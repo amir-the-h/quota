@@ -28,6 +28,8 @@ github.com/amir-the-h/okex v1.0.3-alpha h1:I68aLHocYJ/nQo7hvWrUq/L4/VvY5CIMEZe0E
 github.com/amir-the-h/okex v1.0.3-alpha/go.mod h1:ngcGmYzAiBKg18umdZqBDM8aluy3Q0gJMGSyeLo1XHA=
 github.com/amir-the-h/okex v1.0.5-alpha h1:79vvJsQGxFtVEYGFGuMlwE6tMIbrmuik0LKmeXoLF9Q=
 github.com/amir-the-h/okex v1.0.5-alpha/go.mod h1:ngcGmYzAiBKg18umdZqBDM8aluy3Q0gJMGSyeLo1XHA=
+github.com/amir-the-h/okex v1.0.6-alpha h1:+SlbgKr8sLYyRwmbD1y6AcYCxrtnE8N2LYZ200+KgPY=
+github.com/amir-the-h/okex v1.0.6-alpha/go.mod h1:ngcGmYzAiBKg18umdZqBDM8aluy3Q0gJMGSyeLo1XHA=
 github.com/andybalholm/brotli v1.0.2/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
 github.com/andybalholm/brotli v1.0.3 h1:fpcw+r1N1h0Poc1F/pHbW40cUm/lMEQslZtCkBQ0UnM=
 github.com/andybalholm/brotli v1.0.3/go.mod h1:fO7iG3H7G2nSZ7m0zPUDn85XEX2GTukHGRSepvi9Eig=
