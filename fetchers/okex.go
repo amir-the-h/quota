@@ -29,7 +29,7 @@ func NewOkex(apiKey, secretKey, passphrase string) (*Okex, error) {
 
 // NewQuote fetches quote from okex market.
 func (ok *Okex) NewQuote(symbol string, barSize okex.BarSize, timestamps ...int64) (*tradeKnife.Quota, error) {
-	var q *tradeKnife.Quota
+	q := &tradeKnife.Quota{}
 
 	req := restMarketRequests.GetCandlesticks{
 		InstID: symbol,

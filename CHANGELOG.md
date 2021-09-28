@@ -2,6 +2,13 @@ Changelog
 =========
 All notable changes to this project will be documented in this file.
 
+v1.0.5-alpha
+------------
+
+### Changed
+
+- Fixed nil assignment issue on `okex` Fetcher
+
 v1.0.4-alpha
 ------------
 
