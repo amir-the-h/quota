@@ -6,6 +6,7 @@ import (
 	"github.com/amir-the-h/quota/utils"
 )
 
+// AutoFibo is basically fibonacci series applied on the best spot to find some resistance/support lines.
 type AutoFibo struct {
 	quota.UnimplementedIndicator
 	Ratios    []float64 `mapstructure:"ratios"`

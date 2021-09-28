@@ -5,6 +5,7 @@ import (
 	"github.com/markcheno/go-talib"
 )
 
+// StandardDeviation represents  standard deviation indicator.
 type StandardDeviation struct {
 	quota.UnimplementedIndicator
 	Source       quota.Source `mapstructure:"source"`
@@ -12,6 +13,7 @@ type StandardDeviation struct {
 	Deviation    float64      `mapstructure:"deviation"`
 }
 
+// Add will calculate and add StandardDeviation into the candle or whole quota.
 func (sd *StandardDeviation) Add(q *quota.Quota, c *quota.Candle) bool {
 	if c != nil {
 		candle, i := q.Find(c.OpenTime.Unix())

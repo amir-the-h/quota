@@ -5,6 +5,7 @@ import (
 	"github.com/markcheno/go-talib"
 )
 
+// Ma is a general wrapper for all talib.MaType supported by talib.
 type Ma struct {
 	quota.UnimplementedIndicator
 	Source       quota.Source `mapstructure:"source"`
@@ -12,28 +13,17 @@ type Ma struct {
 	InTimePeriod int          `mapstructure:"period"`
 }
 
+// Add will calculate and add Ma into the candle or whole quota.
 func (ma *Ma) Add(q *quota.Quota, c *quota.Candle) bool {
+	quote, valid := InTimePeriodValidator(ma.InTimePeriod, q, c)
+	if !valid {
+		return false
+	}
 	if c != nil {
-		candle, i := q.Find(c.OpenTime.Unix())
-		if candle == nil {
-			return false
-		}
-
-		startIndex := i - ma.InTimePeriod
-		if startIndex < 0 {
-			return false
-		}
-
-		quote := (*q)[startIndex : i+1]
-
 		values := talib.Ma(quote.Get(ma.Source), ma.InTimePeriod, ma.Type)
 		c.AddIndicator(ma.Tag(), values[len(values)-1])
 
 		return true
-	}
-
-	if len(*q) < ma.InTimePeriod {
-		return false
 	}
 
 	values := talib.Ma(q.Get(ma.Source), ma.InTimePeriod, ma.Type)

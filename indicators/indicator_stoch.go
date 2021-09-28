@@ -5,17 +5,19 @@ import (
 	"github.com/markcheno/go-talib"
 )
 
+// Stoch is the stochastic indicator.
 type Stoch struct {
 	quota.UnimplementedIndicator
 	KTag          quota.IndicatorTag `mapstructure:"kTag"`
 	DTag          quota.IndicatorTag `mapstructure:"dTag"`
 	InFastKPeriod int                `mapstructure:"kLength"`
-	InSlowKPeriod int          `mapstructure:"kSmoothing"`
-	InKMaType     talib.MaType `mapstructure:"kMaType"`
-	InSlowDPeriod int          `mapstructure:"dSmoothing"`
-	InDMaType     talib.MaType `mapstructure:"dMaType"`
+	InSlowKPeriod int                `mapstructure:"kSmoothing"`
+	InKMaType     talib.MaType       `mapstructure:"kMaType"`
+	InSlowDPeriod int                `mapstructure:"dSmoothing"`
+	InDMaType     talib.MaType       `mapstructure:"dMaType"`
 }
 
+// Add will calculate and add Stoch into the candle or whole quota.
 func (s *Stoch) Add(q *quota.Quota, c *quota.Candle) bool {
 	if c != nil {
 		candle, i := q.Find(c.OpenTime.Unix())

@@ -58,42 +58,63 @@ type SourceError error
 type TradeError error
 
 const (
-	SourceOpen   = Source("open")
-	SourceHigh   = Source("high")
-	SourceLow    = Source("low")
-	SourceClose  = Source("close")
+	// SourceOpen determines open Source
+	SourceOpen = Source("open")
+	// SourceHigh determines open Source
+	SourceHigh = Source("high")
+	// SourceLow determines open Source
+	SourceLow = Source("low")
+	// SourceClose determines open Source
+	SourceClose = Source("close")
+	// SourceVolume determines open Source
 	SourceVolume = Source("volume")
 
-	SourceOpenHigh  = Source("oh2")
-	SourceOpenLow   = Source("ol2")
+	// SourceOpenHigh determines oh2 Source
+	SourceOpenHigh = Source("oh2")
+	// SourceOpenLow determines ol2 Source
+	SourceOpenLow = Source("ol2")
+	// SourceOpenClose determines oc2 Source
 	SourceOpenClose = Source("oc2")
-	SourceHighLow   = Source("hl2")
+	// SourceHighLow determines hl2 Source
+	SourceHighLow = Source("hl2")
+	// SourceHighClose determines hc2 Source
 	SourceHighClose = Source("hc2")
-	SourceLowClose  = Source("lc2")
+	// SourceLowClose determines lc2 Source
+	SourceLowClose = Source("lc2")
 
-	SourceOpenHighLow   = Source("ohl3")
+	// SourceOpenHighLow determines ohl3 Source
+	SourceOpenHighLow = Source("ohl3")
+	// SourceOpenHighClose determines ohc3 Source
 	SourceOpenHighClose = Source("ohc3")
-	SourceOpenLowClose  = Source("olc3")
-	SourceHighLowClose  = Source("hlc3")
+	// SourceOpenLowClose determines olc3 Source
+	SourceOpenLowClose = Source("olc3")
+	// SourceHighLowClose determines hlc3 Source
+	SourceHighLowClose = Source("hlc3")
 
+	// SourceOpenHighLowClose determines ohlc4 Source
 	SourceOpenHighLowClose = Source("ohlc4")
 
-	PositionBuy  = PositionType("Buy")
+	// PositionBuy determines buy PositionType
+	PositionBuy = PositionType("Buy")
+	// PositionSell determines sell PositionType
 	PositionSell = PositionType("Sell")
 
-	TradeStatusOpen  = TradeStatus("Open")
+	// TradeStatusOpen determines open TradeStatus
+	TradeStatusOpen = TradeStatus("Open")
+	// TradeStatusClose determines close TradeStatus
 	TradeStatusClose = TradeStatus("Close")
 
-	ExitCauseStopLossTriggered   = ExitCause("Stop loss")
+	// ExitCauseStopLossTriggered determines stop loss triggered on trade.
+	ExitCauseStopLossTriggered = ExitCause("Stop loss")
+	// ExitCauseTakeProfitTriggered determines take profit triggered on trade.
 	ExitCauseTakeProfitTriggered = ExitCause("Take profit")
-	ExitCauseMarket              = ExitCause("Market")
-
-	MarketSpot     = MarketType("Spot")
-	MarketFutures  = MarketType("Futures")
-	MarketDelivery = MarketType("Delivery")
+	// ExitCauseMarket determines trade closed by market.
+	ExitCauseMarket = ExitCause("Market")
 )
 
 var (
+	// ErrInvalidCandleData occurs on Candle operations.
 	ErrInvalidCandleData = errors.New("invalid data provided for candle").(CandleError)
-	ErrNotEnoughCandles  = errors.New("not enough candles to operate").(CandleError)
+	// ErrNotEnoughCandles occurs when there is not enough Candle in Quota to operate.
+	ErrNotEnoughCandles = errors.New("not enough candles to operate").(CandleError)
 )

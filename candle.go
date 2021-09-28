@@ -7,19 +7,19 @@ import (
 
 // Candle is the main structure which contains a group of useful candlestick data.
 type Candle struct {
-	Open       float64                             `json:"open"`
-	High       float64                             `json:"high"`
-	Low        float64                             `json:"low"`
-	Close      float64                             `json:"close"`
-	Volume     float64                             `json:"volume"`
-	Score      float64                             `json:"score"`
-	Symbol     string                              `json:"symbol"`
+	Open       float64                  `json:"open"`
+	High       float64                  `json:"high"`
+	Low        float64                  `json:"low"`
+	Close      float64                  `json:"close"`
+	Volume     float64                  `json:"volume"`
+	Score      float64                  `json:"score"`
+	Symbol     string                   `json:"symbol"`
 	BarSize    okex.BarSize             `json:"barSize"`
 	Indicators map[IndicatorTag]float64 `json:"indicators"`
 	OpenTime   time.Time                `json:"open_time"`
-	CloseTime  time.Time                           `json:"close_time"`
-	Next       *Candle                             `json:"-"`
-	Previous   *Candle                             `json:"-"`
+	CloseTime  time.Time                `json:"close_time"`
+	Next       *Candle                  `json:"-"`
+	Previous   *Candle                  `json:"-"`
 }
 
 // NewCandle returns a pointer to a fresh candle with provided data.

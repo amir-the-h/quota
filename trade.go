@@ -12,7 +12,7 @@ type Trades []*Trade
 // Find searches for a trade, and its index among all trades.
 func (t Trades) Find(id string) (*Trade, int) {
 	for i, trade := range t {
-		if trade.Id == id {
+		if trade.ID == id {
 			return trade, i
 		}
 	}
@@ -22,7 +22,7 @@ func (t Trades) Find(id string) (*Trade, int) {
 
 // Trade represents a real world trade
 type Trade struct {
-	Id                string
+	ID                string
 	Coin              string
 	Base              string
 	Driver            string
@@ -68,7 +68,7 @@ func NewTrade(id, driver, coin, base string, position PositionType, quote, entry
 	}
 
 	return &Trade{
-		Id:                id,
+		ID:                id,
 		Driver:            driver,
 		Coin:              coin,
 		Base:              base,
@@ -108,7 +108,7 @@ func (t *Trade) Close(price float64, candle *Candle) {
 // String Stringify the trade.
 func (t Trade) String() string {
 	var text string
-	text = fmt.Sprintf("#%s\t%s\t%f %s\n", t.Id, t.Position, t.Size, t.Coin)
+	text = fmt.Sprintf("#%s\t%s\t%f %s\n", t.ID, t.Position, t.Size, t.Coin)
 	text += fmt.Sprintf("Quote:\t%f %s\n", t.Quote, t.Base)
 	text += fmt.Sprintf("Status:\t%s\n", t.Status)
 	text += fmt.Sprintf("Entry:\t%.4f\t%s\n", t.Entry, t.OpenAt.Local().Format("06/02/01 15:04:05"))

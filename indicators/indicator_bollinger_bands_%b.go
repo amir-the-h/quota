@@ -6,28 +6,22 @@ import (
 	"github.com/markcheno/go-talib"
 )
 
+// BollingerBandsB is an advanced bollinger bands indicator.
 type BollingerBandsB struct {
 	quota.UnimplementedIndicator
 	Std StandardDeviation `mapstructure:"standardDeviation"`
 }
 
+// Add will calculate and add BollingerBandsB into the candle or whole quota.
 func (bbb *BollingerBandsB) Add(q *quota.Quota, c *quota.Candle) bool {
+	qu, valid := InTimePeriodValidator(bbb.Std.InTimePeriod, q, c)
+	if !valid {
+		return false
+	}
 	if c != nil {
-		candle, i := q.Find(c.OpenTime.Unix())
-		if candle == nil {
-			return false
-		}
-
-		startIndex := i - bbb.Std.InTimePeriod
-		if startIndex < 0 {
-			return false
-		}
-
-		quote := (*q)[startIndex : i+1]
-
 		deviation, ok := c.Get(quota.Source(bbb.Std.Tag()))
 		if !ok {
-			if !bbb.Std.Add(&quote, c) {
+			if !bbb.Std.Add(qu, c) {
 				return false
 			}
 
@@ -45,7 +39,7 @@ func (bbb *BollingerBandsB) Add(q *quota.Quota, c *quota.Candle) bool {
 		}
 		basis, ok := c.Get(quota.Source(sma.Tag()))
 		if !ok {
-			if !sma.Add(&quote, c) {
+			if !sma.Add(qu, c) {
 				return false
 			}
 			basis, ok = c.Get(quota.Source(sma.Tag()))
@@ -61,14 +55,9 @@ func (bbb *BollingerBandsB) Add(q *quota.Quota, c *quota.Candle) bool {
 			return false
 		}
 		bbr = (bbr - lower) / (upper - lower)
-		candle.AddIndicator(bbb.Tag(), bbr)
-		(*q)[i] = candle
+		c.AddIndicator(bbb.Tag(), bbr)
 
 		return true
-	}
-
-	if len(*q) < bbb.Std.InTimePeriod {
-		return false
 	}
 
 	for _, candle := range *q {

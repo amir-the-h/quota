@@ -5,6 +5,7 @@ import (
 	"github.com/amir-the-h/quota/utils"
 )
 
+// Hp filters the given source by Hodrick-Prescott filter.
 type Hp struct {
 	quota.UnimplementedIndicator
 	Source quota.Source `mapstructure:"source"`
@@ -12,28 +13,17 @@ type Hp struct {
 	Length int          `mapstructure:"length"`
 }
 
+// Add will calculate and add Hp into the candle or whole quota.
 func (hp *Hp) Add(q *quota.Quota, c *quota.Candle) bool {
+	qu, valid := InTimePeriodValidator(hp.Length, q, c)
+	if !valid {
+		return false
+	}
 	if c != nil {
-		candle, i := q.Find(c.OpenTime.Unix())
-		if candle == nil {
-			return false
-		}
-
-		startIndex := i - hp.Length
-		if startIndex < 0 {
-			return false
-		}
-
-		quote := (*q)[startIndex : i+1]
-
-		values := utils.HPFilter(quote.Get(hp.Source), hp.Lambda)
+		values := utils.HPFilter(qu.Get(hp.Source), hp.Lambda)
 		c.AddIndicator(hp.Tag(), values[len(values)-1])
 
 		return true
-	}
-
-	if len(*q) < hp.Length {
-		return false
 	}
 
 	for _, candle := range *q {
