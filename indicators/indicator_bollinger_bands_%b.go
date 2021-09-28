@@ -8,8 +8,8 @@ import (
 
 // BollingerBandsB is an advanced bollinger bands indicator.
 type BollingerBandsB struct {
-	quota.UnimplementedIndicator
-	Std StandardDeviation `mapstructure:"standardDeviation"`
+	Tag quota.IndicatorTag `mapstructure:"tag"`
+	Std StandardDeviation  `mapstructure:"standardDeviation"`
 }
 
 // Add will calculate and add BollingerBandsB into the candle or whole quota.
@@ -19,30 +19,30 @@ func (bbb *BollingerBandsB) Add(q *quota.Quota, c *quota.Candle) bool {
 		return false
 	}
 	if c != nil {
-		deviation, ok := c.Get(quota.Source(bbb.Std.Tag()))
+		deviation, ok := c.Get(quota.Source(bbb.Std.Tag))
 		if !ok {
 			if !bbb.Std.Add(qu, c) {
 				return false
 			}
 
-			deviation, ok = c.Get(quota.Source(bbb.Std.Tag()))
+			deviation, ok = c.Get(quota.Source(bbb.Std.Tag))
 			if !ok {
 				return false
 			}
 		}
 
 		sma := &Ma{
-			UnimplementedIndicator: quota.UnimplementedIndicator{UTag: quota.IndicatorTag(fmt.Sprintf("bbb:sma:%s:%d", bbb.Std.Source, bbb.Std.InTimePeriod))},
-			Source:                 bbb.Std.Source,
-			Type:                   talib.SMA,
-			InTimePeriod:           bbb.Std.InTimePeriod,
+			Tag:          quota.IndicatorTag(fmt.Sprintf("bbb:sma:%s:%d", bbb.Std.Source, bbb.Std.InTimePeriod)),
+			Source:       bbb.Std.Source,
+			Type:         talib.SMA,
+			InTimePeriod: bbb.Std.InTimePeriod,
 		}
-		basis, ok := c.Get(quota.Source(sma.Tag()))
+		basis, ok := c.Get(quota.Source(sma.Tag))
 		if !ok {
 			if !sma.Add(qu, c) {
 				return false
 			}
-			basis, ok = c.Get(quota.Source(sma.Tag()))
+			basis, ok = c.Get(quota.Source(sma.Tag))
 			if !ok {
 				return false
 			}
@@ -55,7 +55,7 @@ func (bbb *BollingerBandsB) Add(q *quota.Quota, c *quota.Candle) bool {
 			return false
 		}
 		bbr = (bbr - lower) / (upper - lower)
-		c.AddIndicator(bbb.Tag(), bbr)
+		c.AddIndicator(bbb.Tag, bbr)
 
 		return true
 	}
@@ -67,4 +67,9 @@ func (bbb *BollingerBandsB) Add(q *quota.Quota, c *quota.Candle) bool {
 	}
 
 	return true
+}
+
+// Is determine provided tag belongs to this quota.Indicator or not.
+func (bbb *BollingerBandsB) Is(tag quota.IndicatorTag) bool {
+	return bbb.Tag == tag
 }

@@ -7,10 +7,10 @@ import (
 
 // Hp filters the given source by Hodrick-Prescott filter.
 type Hp struct {
-	quota.UnimplementedIndicator
-	Source quota.Source `mapstructure:"source"`
-	Lambda float64      `mapstructure:"lambda"`
-	Length int          `mapstructure:"length"`
+	Tag    quota.IndicatorTag `mapstructure:"tag"`
+	Source quota.Source       `mapstructure:"source"`
+	Lambda float64            `mapstructure:"lambda"`
+	Length int                `mapstructure:"length"`
 }
 
 // Add will calculate and add Hp into the candle or whole quota.
@@ -21,7 +21,7 @@ func (hp *Hp) Add(q *quota.Quota, c *quota.Candle) bool {
 	}
 	if c != nil {
 		values := utils.HPFilter(qu.Get(hp.Source), hp.Lambda)
-		c.AddIndicator(hp.Tag(), values[len(values)-1])
+		c.AddIndicator(hp.Tag, values[len(values)-1])
 
 		return true
 	}
@@ -33,4 +33,9 @@ func (hp *Hp) Add(q *quota.Quota, c *quota.Candle) bool {
 	}
 
 	return true
+}
+
+// Is determine provided tag belongs to this quota.Indicator or not.
+func (hp *Hp) Is(tag quota.IndicatorTag) bool {
+	return hp.Tag == tag
 }

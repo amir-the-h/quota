@@ -7,7 +7,7 @@ import (
 
 // Stoch is the stochastic indicator.
 type Stoch struct {
-	quota.UnimplementedIndicator
+	Tag           quota.IndicatorTag `mapstructure:"tag"`
 	KTag          quota.IndicatorTag `mapstructure:"kTag"`
 	DTag          quota.IndicatorTag `mapstructure:"dTag"`
 	InFastKPeriod int                `mapstructure:"kLength"`
@@ -42,4 +42,9 @@ func (s *Stoch) Add(q *quota.Quota, c *quota.Candle) bool {
 	err = q.AddIndicator(s.DTag, d)
 
 	return err == nil
+}
+
+// Is determine provided tag belongs to this quota.Indicator or not.
+func (s *Stoch) Is(tag quota.IndicatorTag) bool {
+	return s.Tag == tag
 }

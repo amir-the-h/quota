@@ -8,10 +8,10 @@ import (
 
 // AutoFibo is basically fibonacci series applied on the best spot to find some resistance/support lines.
 type AutoFibo struct {
-	quota.UnimplementedIndicator
-	Ratios    []float64 `mapstructure:"ratios"`
-	Deviation float64   `mapstructure:"deviation"`
-	Depth     int       `mapstructure:"depth"`
+	Tag       quota.IndicatorTag `mapstructure:"tag"`
+	Ratios    []float64          `mapstructure:"ratios"`
+	Deviation float64            `mapstructure:"deviation"`
+	Depth     int                `mapstructure:"depth"`
 }
 
 // Add will calculate and add AutoFibo into the candle or whole quota.
@@ -25,7 +25,7 @@ func (af *AutoFibo) Add(q *quota.Quota, c *quota.Candle) bool {
 		quote := (*q)[:i+1]
 		fibos := utils.AutoFiboRectracement(quote.Get(quota.SourceHigh), quote.Get(quota.SourceLow), quote.Get(quota.SourceClose), af.Ratios, af.Depth, af.Deviation)
 		for ratio, fibo := range fibos[len(fibos)-1] {
-			c.AddIndicator(quota.IndicatorTag(fmt.Sprintf("%s:%.2f", af.Tag(), ratio)), fibo)
+			c.AddIndicator(quota.IndicatorTag(fmt.Sprintf("%s:%.2f", af.Tag, ratio)), fibo)
 		}
 		(*q)[i] = c
 
@@ -39,4 +39,9 @@ func (af *AutoFibo) Add(q *quota.Quota, c *quota.Candle) bool {
 	}
 
 	return true
+}
+
+// Is determine provided tag belongs to this quota.Indicator or not.
+func (af *AutoFibo) Is(tag quota.IndicatorTag) bool {
+	return af.Tag == tag
 }
