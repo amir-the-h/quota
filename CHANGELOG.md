@@ -2,6 +2,13 @@ Changelog
 =========
 All notable changes to this project will be documented in this file.
 
+v1.0.1-alpha
+------------
+
+### Changed
+
+- Updated Github actions badges to README.md
+
 v1.0.0-alpha
 ------------
 

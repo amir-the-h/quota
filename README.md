@@ -7,9 +7,9 @@ Trade Knife
 [![GitHub license](https://img.shields.io/github/license/amir-the-h/quota.svg)](https://github.com/amir-the-h/quota/blob/main/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/amir-the-h/quota.svg)](https://GitHub.com/amir-the-h/quota/releases/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![CI](https://github.com/amir-the-h/okex/actions/workflows/main.yml/badge.svg)](https://github.com/amir-the-h/okex/actions/workflows/main.yml)
-[![CodeQL](https://github.com/amir-the-h/okex/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/amir-the-h/okex/actions/workflows/codeql-analysis.yml)
-[![AutoRelease](https://github.com/amir-the-h/okex/actions/workflows/release.yml/badge.svg)](https://github.com/amir-the-h/okex/actions/workflows/release.yml)
+[![CI](https://github.com/amir-the-h/quota/actions/workflows/main.yml/badge.svg)](https://github.com/amir-the-h/quota/actions/workflows/main.yml)
+[![CodeQL](https://github.com/amir-the-h/quota/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/amir-the-h/quota/actions/workflows/codeql-analysis.yml)
+[![AutoRelease](https://github.com/amir-the-h/quota/actions/workflows/release.yml/badge.svg)](https://github.com/amir-the-h/quota/actions/workflows/release.yml)
 
 Switzer knife on your trading times
 -----------------------------------
