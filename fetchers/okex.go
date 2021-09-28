@@ -32,7 +32,7 @@ func (ok *Okex) NewQuote(symbol string, barSize okex.BarSize, timestamps ...int6
 	var q *tradeKnife.Quota
 
 	req := restMarketRequests.GetCandlesticks{
-		InstId: symbol,
+		InstID: symbol,
 		Bar:    barSize,
 	}
 	if len(timestamps) > 0 {
@@ -92,7 +92,7 @@ func (ok *Okex) Sync(q *tradeKnife.Quota, update tradeKnife.CandleChannel) (err 
 		return errors.New("won't be able to sync an empty quote")
 	}
 	req := wsPublicRequests.Candlesticks{
-		InstId:  (*q).Symbol(),
+		InstID:  (*q).Symbol(),
 		Channel: okex.CandleStick1m,
 	}
 	cCh := make(chan *publicEvents.Candlesticks)

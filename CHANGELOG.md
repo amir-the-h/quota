@@ -2,6 +2,13 @@ Changelog
 =========
 All notable changes to this project will be documented in this file.
 
+v1.0.4-alpha
+------------
+
+### Changed
+
+- Renamed `InstId` to `InstID` on fetching candles
+
 v1.0.3-alpha
 ------------
 
