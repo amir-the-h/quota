@@ -38,9 +38,6 @@ func (s *Stoch) Add(q *quota.Quota, c *quota.Candle) bool {
 		return false
 	}
 	err = q.AddIndicator(s.DTag, d)
-	if err != nil {
-		return false
-	}
 
-	return true
+	return err == nil
 }

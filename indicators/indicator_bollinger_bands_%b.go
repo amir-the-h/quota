@@ -38,7 +38,7 @@ func (bbb *BollingerBandsB) Add(q *quota.Quota, c *quota.Candle) bool {
 		}
 
 		sma := &Ma{
-			UnimplementedIndicator: quota.UnimplementedIndicator{tag: quota.IndicatorTag(fmt.Sprintf("bbb:sma:%s:%d", bbb.Std.Source, bbb.Std.InTimePeriod))},
+			UnimplementedIndicator: quota.UnimplementedIndicator{UTag: quota.IndicatorTag(fmt.Sprintf("bbb:sma:%s:%d", bbb.Std.Source, bbb.Std.InTimePeriod))},
 			Source:                 bbb.Std.Source,
 			Type:                   talib.SMA,
 			InTimePeriod:           bbb.Std.InTimePeriod,

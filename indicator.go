@@ -12,15 +12,15 @@ type IndicatorTag string
 
 // UnimplementedIndicator adds functionality of indicator tags.
 type UnimplementedIndicator struct {
-	tag IndicatorTag `mapstructure:"tag"`
+	UTag IndicatorTag `mapstructure:"tag"`
 }
 
 // Is determine provided tag belongs to this UnimplementedIndicator or not.
 func (i *UnimplementedIndicator) Is(tag IndicatorTag) bool {
-	return i.tag == tag
+	return i.UTag == tag
 }
 
 // Tag will return the UnimplementedIndicator's tag.
 func (i *UnimplementedIndicator) Tag() IndicatorTag {
-	return i.tag
+	return i.UTag
 }

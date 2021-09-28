@@ -38,9 +38,6 @@ func (ma *Ma) Add(q *quota.Quota, c *quota.Candle) bool {
 
 	values := talib.Ma(q.Get(ma.Source), ma.InTimePeriod, ma.Type)
 	err := q.AddIndicator(ma.Tag(), values)
-	if err != nil {
-		return false
-	}
 
-	return true
+	return err == nil
 }

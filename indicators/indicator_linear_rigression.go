@@ -37,9 +37,6 @@ func (lr *LinearRegression) Add(q *quota.Quota, c *quota.Candle) bool {
 
 	values := talib.LinearReg(q.Get(lr.Source), lr.InTimePeriod)
 	err := q.AddIndicator(lr.Tag(), values)
-	if err != nil {
-		return false
-	}
 
-	return true
+	return err == nil
 }

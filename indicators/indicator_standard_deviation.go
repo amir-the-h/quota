@@ -38,9 +38,6 @@ func (sd *StandardDeviation) Add(q *quota.Quota, c *quota.Candle) bool {
 
 	values := talib.StdDev(q.Get(sd.Source), sd.InTimePeriod, sd.Deviation)
 	err := q.AddIndicator(sd.Tag(), values)
-	if err != nil {
-		return false
-	}
 
-	return true
+	return err == nil
 }
