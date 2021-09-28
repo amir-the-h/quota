@@ -1,4 +1,4 @@
-Trade Knife
+Quota
 ===========
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/amir-the-h/quota.svg)](https://pkg.go.dev/github.com/amir-the-h/quota)
