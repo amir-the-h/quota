@@ -2,6 +2,13 @@ Changelog
 =========
 All notable changes to this project will be documented in this file.
 
+v1.0.11-alpha
+------------
+
+### Changed
+
+- Updated `github.com/amir-the-h/okex` to v1.0.11-alpha
+
 v1.0.10-alpha
 ------------
 
