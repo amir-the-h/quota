@@ -52,7 +52,7 @@ func (ok *Okex) NewQuote(symbol string, barSize okex.BarSize, timestamps ...int6
 	}
 
 	for _, c := range res.Candles {
-		candle, err := createCandleFromOkexKline(c.O, c.H, c.L, c.C, c.Vol, (time.Time)(c.Ts).Unix(), symbol, barSize)
+		candle, err := createCandleFromOkexKline(c.O, c.H, c.L, c.C, c.Vol, (time.Time)(c.TS).Unix(), symbol, barSize)
 		if err != nil {
 			return q, err
 		}
@@ -99,7 +99,7 @@ func (ok *Okex) Sync(q *tradeKnife.Quota, update tradeKnife.CandleChannel) (err 
 	go func() {
 		for e := range cCh {
 			for _, c := range e.Candles {
-				ot := time.Time(c.Ts).UTC()
+				ot := time.Time(c.TS).UTC()
 				ct := ot.Add(q.BarSize().Duration()).UTC()
 				candle, err := q.Sync(c.O, c.H, c.L, c.C, c.Vol, ot, ct)
 				if err != nil {

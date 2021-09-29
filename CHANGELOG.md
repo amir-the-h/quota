@@ -2,6 +2,13 @@ Changelog
 =========
 All notable changes to this project will be documented in this file.
 
+v1.0.8-alpha
+------------
+
+### Changed
+
+- Refactored due changes of `github.com/amir-the-h/okex@v1.0.8-alpha`
+
 v1.0.7-alpha
 ------------
 
