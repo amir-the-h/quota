@@ -14,7 +14,7 @@ require (
 require (
 	github.com/Kucoin/kucoin-go-sdk v1.2.7 // indirect
 	github.com/ajstarks/svgo v0.0.0-20210406150507-75cfd577ce75 // indirect
-	github.com/amir-the-h/okex v1.0.13-alpha // indirect
+	github.com/amir-the-h/okex v1.0.14-alpha // indirect
 	github.com/andybalholm/brotli v1.0.3 // indirect
 	github.com/bitly/go-simplejson v0.5.0 // indirect
 	github.com/fogleman/gg v1.3.0 // indirect
