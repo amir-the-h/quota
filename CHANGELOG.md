@@ -2,6 +2,13 @@ Changelog
 =========
 All notable changes to this project will be documented in this file.
 
+v1.0.23-alpha
+------------
+
+### Changed
+
+- Fixed out of range error on getting quotas from source
+
 v1.0.22-alpha
 ------------
 
