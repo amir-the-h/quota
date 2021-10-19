@@ -19,8 +19,12 @@ type Okex struct {
 }
 
 // NewOkex returns a pointer to a fresh Okex tradeKnife.Fetcher.
-func NewOkex(apiKey, secretKey, passphrase string) (*Okex, error) {
-	c, err := api.NewClient(context.Background(), apiKey, secretKey, passphrase, okex.NormalServer)
+func NewOkex(apiKey, secretKey, passphrase string, dest ...okex.Destination) (*Okex, error) {
+	d := okex.NormalServer
+	if len(dest) > 0 {
+		d = dest[0]
+	}
+	c, err := api.NewClient(context.Background(), apiKey, secretKey, passphrase, d)
 	if err != nil {
 		return nil, err
 	}

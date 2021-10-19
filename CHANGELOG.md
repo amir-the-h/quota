@@ -2,6 +2,14 @@ Changelog
 =========
 All notable changes to this project will be documented in this file.
 
+v1.0.27-alpha
+------------
+
+### Changed
+
+- Updated `github.com/amir-the-h/okex` to v1.0.26-alpha
+- Added ability to select server on okex fetcher
+
 v1.0.26-alpha
 ------------
 
