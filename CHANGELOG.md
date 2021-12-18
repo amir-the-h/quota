@@ -2,7 +2,7 @@ Changelog
 =========
 All notable changes to this project will be documented in this file.
 
-v1.0.3-alpha
+v1.0.28-alpha
 ------------
 ### Changed
 
@@ -10,11 +10,6 @@ v1.0.3-alpha
 - Added in-memory storage driver
 - Added redis storage driver
 - Added persist old data to prevent memory leak
-
-### Changed
-
-- Updated `github.com/amir-the-h/okex` to v1.0.26-alpha
-- Added ability to select server on okex fetcher
 
 v1.0.27-alpha
 ------------
