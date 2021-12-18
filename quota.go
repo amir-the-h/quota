@@ -2,9 +2,10 @@ package quota
 
 import (
 	"errors"
-	"github.com/amir-the-h/okex"
 	"sort"
 	"time"
+
+	"github.com/amir-the-h/okex"
 )
 
 // Quota is the group of candles and make time-series.
@@ -57,7 +58,7 @@ func (q *Quota) Find(timestamp int64) (*Candle, int) {
 		}
 	}
 
-	return nil, 0
+	return nil, -1
 }
 
 // Sort runs through the quota and reorder candles by the open time.
