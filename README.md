@@ -11,6 +11,6 @@ Quota
 [![CodeQL](https://github.com/amir-the-h/quota/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/amir-the-h/quota/actions/workflows/codeql-analysis.yml)
 [![AutoRelease](https://github.com/amir-the-h/quota/actions/workflows/release.yml/badge.svg)](https://github.com/amir-the-h/quota/actions/workflows/release.yml)
 
-Switzer knife on your trading times
+Quota of candles
 -----------------------------------
-More info to come soon.
+A time series to help you with your trading bot.
