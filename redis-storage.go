@@ -46,7 +46,7 @@ func NewRedisStorage(symbol string, interval time.Duration, config map[string]in
 
 // Implemenet the Storage interface for RedisStorage.
 // All returns all the values.
-func (s *RedisStorage) All() ([]*Candle, error) {
+func (s *RedisStorage) All() (*Quota, error) {
 	s.mutex.RLock()
 	defer s.mutex.RUnlock()
 
@@ -56,7 +56,7 @@ func (s *RedisStorage) All() ([]*Candle, error) {
 		return nil, fmt.Errorf("failed to get the timestamps from redis: %s", err)
 	}
 
-	var candles []*Candle
+	var quota Quota
 
 	// Retrieve the values.
 	for _, ts := range timestamps {
@@ -75,10 +75,10 @@ func (s *RedisStorage) All() ([]*Candle, error) {
 		if err != nil {
 			return nil, fmt.Errorf("failed to deserialize the candle for %s: %v", key, err)
 		}
-		candles = append(candles, candle)
+		quota = append(quota, candle)
 	}
 
-	return candles, nil
+	return &quota, nil
 }
 
 // Get retrieves the value for the given key.

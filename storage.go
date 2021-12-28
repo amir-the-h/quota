@@ -7,7 +7,7 @@ import (
 // Storage is an interface for storing and retrieving candles.
 type Storage interface {
 	// All returns all the candle in the storage.
-	All(symbol string, interval time.Duration) (*Quota, error)
+	All() (*Quota, error)
 
 	// Get retrieves candle from the storage.
 	Get(openTime time.Time) (*Candle, error)
