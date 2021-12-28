@@ -2,6 +2,18 @@ Changelog
 =========
 All notable changes to this project will be documented in this file.
 
+v1.0.30-alpha
+------------
+### Changed
+
+- Added update notes
+
+v1.0.29-alpha
+------------
+### Changed
+
+- Fixed redis implementation of storage
+
 v1.0.28-alpha
 ------------
 ### Changed
