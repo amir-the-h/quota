@@ -39,6 +39,11 @@ func (s *InMemoryStorage) Get(openTime time.Time) (*Candle, error) {
 	return candle, nil
 }
 
+// GetByIndex retrieves candle from the storage by index.
+func (s *InMemoryStorage) GetByIndex(index int) (*Candle, error) {
+	return (*s.Q)[index], nil
+}
+
 // Put stores the given value for the given key.
 func (s *InMemoryStorage) Put(c ...*Candle) error {
 	s.mutex.Lock()
@@ -50,8 +55,8 @@ func (s *InMemoryStorage) Put(c ...*Candle) error {
 }
 
 // Update updates the value for the given key.
-func (s *InMemoryStorage) Update(c *Candle) error {
-	return s.Put(c)
+func (s *InMemoryStorage) Update(c ...*Candle) error {
+	return s.Put(c...)
 }
 
 // Delete deletes the value for the given key.

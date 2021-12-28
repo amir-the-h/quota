@@ -22,7 +22,7 @@ type Storage interface {
 	Update(candle ...*Candle) error
 
 	// Delete removes the candle from the storage.
-	Delete(key string) error
+	Delete(candle *Candle) error
 
 	// Close closes the storage.
 	Close() error

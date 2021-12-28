@@ -103,6 +103,25 @@ func (s *RedisStorage) Get(openTime time.Time) (*Candle, error) {
 	return candle, nil
 }
 
+// GetByIndex retrieves candle from the storage by index.
+func (s *RedisStorage) GetByIndex(index int) (*Candle, error) {
+	s.mutex.RLock()
+	defer s.mutex.RUnlock()
+
+	tmp := fmt.Sprint(index)
+	index64, _ := strconv.ParseInt(tmp, 10, 64)
+	// Retrieve the value.
+	timestamp, err := s.client.LIndex(s.ctx, fmt.Sprintf(REDIS_TIMESTAMPS_KEY, REDIS_KEY_PREFIX), index64).Result()
+	if err != nil {
+		return nil, fmt.Errorf("failed to get the timestamp: %s", err)
+	}
+
+	timestamp64, _ := strconv.ParseInt(timestamp, 10, 64)
+	openTime := time.Unix(timestamp64, 0)
+
+	return s.Get(openTime)
+}
+
 // Put stores the value for the given key.
 func (s *RedisStorage) Put(c ...*Candle) error {
 	s.mutex.Lock()
@@ -134,8 +153,8 @@ func (s *RedisStorage) Put(c ...*Candle) error {
 }
 
 // Update updates the value for the given key.
-func (s *RedisStorage) Update(candle *Candle) error {
-	return s.Put(candle)
+func (s *RedisStorage) Update(candle ...*Candle) error {
+	return s.Put(candle...)
 }
 
 // Delete removes the value for the given key.
